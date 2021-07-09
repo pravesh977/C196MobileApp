@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item android:title="Delete Course"
+        app:showAsAction="never"
+        android:id="@+id/deleteCourseButton"
+        android:orderInCategory="100"/>
+    <item android:title="Share"
+        app:showAsAction="never"
+        android:id="@+id/courseSharing"
+        android:orderInCategory="100"/>
+    <item android:title="Notify"
+        app:showAsAction="never"
+        android:id="@+id/NotifyCourse"
+        android:orderInCategory="100"/>
+</menu>
