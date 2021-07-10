@@ -118,7 +118,7 @@ public class CoursesActivity extends AppCompatActivity {
 
     public void openDatePickerDialogStartTerm(Calendar givenCalendar){
 
-        startDateDialog = new DatePickerDialog(CoursesActivity.this, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog startDateDialog = new DatePickerDialog(CoursesActivity.this, new DatePickerDialog.OnDateSetListener() {
 
 
 
@@ -135,14 +135,14 @@ public class CoursesActivity extends AppCompatActivity {
 
     public void openDatePickerDialogEndTerm(Calendar givenCalendar){
 
-        startDateDialog = new DatePickerDialog(CoursesActivity.this, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog endDateDialog = new DatePickerDialog(CoursesActivity.this, new DatePickerDialog.OnDateSetListener() {
 
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 CoursesActivity.this.editTermEnd.setText((month + 1) + "/" + day + "/" + year);
             }
         }, givenCalendar.get(Calendar.YEAR), givenCalendar.get(Calendar.MONTH), givenCalendar.get(Calendar.DAY_OF_MONTH));
-        startDateDialog.show();
+        endDateDialog.show();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

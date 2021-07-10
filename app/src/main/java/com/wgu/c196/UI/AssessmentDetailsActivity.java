@@ -2,20 +2,24 @@ package com.wgu.c196.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wgu.c196.Database.DBRepository;
 import com.wgu.c196.Entity.AssessmentEntity;
+import com.wgu.c196.HelperClasses.StringToCalendarConverterClass;
 import com.wgu.c196.R;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class AssessmentDetailsActivity extends AppCompatActivity {
@@ -70,6 +74,49 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
             courseIdTextView.setText(String.valueOf(courseId));
         }
 
+        //Setting onClick on performance EditText
+        editPerformanceDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //openDatePickerDialog();
+                Calendar performanceDateCalendar = StringToCalendarConverterClass.stringToCalendar(editPerformanceDate);
+                openDatePickerDialogPerformance(performanceDateCalendar);
+            }
+        });
+
+        //Setting onClick on objective EditText
+        editObjectiveDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar objectiveDateCalendar = StringToCalendarConverterClass.stringToCalendar(editObjectiveDate);
+                openDatePickerDialogObjective(objectiveDateCalendar);
+            }
+        });
+
+    }
+
+    public void openDatePickerDialogPerformance(Calendar givenCalendar){
+
+        DatePickerDialog performanceDatePicker = new DatePickerDialog(AssessmentDetailsActivity.this, new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                AssessmentDetailsActivity.this.editPerformanceDate.setText((month + 1) + "/" + day + "/" + year);
+            }
+        }, givenCalendar.get(Calendar.YEAR), givenCalendar.get(Calendar.MONTH), givenCalendar.get(Calendar.DAY_OF_MONTH));
+        performanceDatePicker.show();
+    }
+
+    public void openDatePickerDialogObjective(Calendar givenCalendar){
+
+        DatePickerDialog objectiveDatePicker = new DatePickerDialog(AssessmentDetailsActivity.this, new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                AssessmentDetailsActivity.this.editObjectiveDate.setText((month + 1) + "/" + day + "/" + year);
+            }
+        }, givenCalendar.get(Calendar.YEAR), givenCalendar.get(Calendar.MONTH), givenCalendar.get(Calendar.DAY_OF_MONTH));
+        objectiveDatePicker.show();
     }
 
     //Adding menu to the Assessment screen
