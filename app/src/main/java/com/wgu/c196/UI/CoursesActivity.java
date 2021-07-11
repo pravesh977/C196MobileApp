@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wgu.c196.Database.DBRepository;
 import com.wgu.c196.Entity.CourseEntity;
 import com.wgu.c196.Entity.TermEntity;
@@ -47,6 +48,7 @@ public class CoursesActivity extends AppCompatActivity {
     Calendar myCalendar = Calendar.getInstance();
     private DatePickerDialog startDateDialog;
     private Long date;
+    private FloatingActionButton addCourseFloatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +69,12 @@ public class CoursesActivity extends AppCompatActivity {
 //        String tId = String.valueOf(currentTerm.getTermId());
 //        Toast.makeText(getApplicationContext(), tId, Toast.LENGTH_LONG).show();
 
-
-
             editTermTitle = findViewById(R.id.editTermName);
             editTermStart = findViewById(R.id.editTermStart);
             editTermEnd = findViewById(R.id.editTermEnd);
             termIdTextView = findViewById(R.id.termIdTextView);
+            addCourseFloatButton = findViewById(R.id.addCourseFloatButton);
+            addCourseFloatButton.setEnabled(false);
 
         //Setting onClick on term start EditText
         editTermStart.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +102,7 @@ public class CoursesActivity extends AppCompatActivity {
             editTermEnd.setText(getIntent().getStringExtra("termEnd"));
             //termIdTextView.setText(getIntent().getIntExtra("termId", -99));
             termIdTextView.setText(String.valueOf(Id));
+            addCourseFloatButton.setEnabled(true);
         }
 
         recyclerView = findViewById(R.id.coursesRecyclerView);

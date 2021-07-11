@@ -142,7 +142,7 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
     }
 
 
-    //FIXMEx redirect after saving/updating
+    //FIXME redirect after saving/updating
     public void saveAssessment(View view) {
 //        Toast.makeText(getApplicationContext(), courseId, Toast.LENGTH_LONG).show();
 //        Log.i("course-is", String.valueOf(courseId));

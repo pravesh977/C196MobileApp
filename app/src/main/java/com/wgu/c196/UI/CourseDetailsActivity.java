@@ -15,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wgu.c196.Database.DBRepository;
 import com.wgu.c196.Entity.AssessmentEntity;
 import com.wgu.c196.Entity.CourseEntity;
@@ -51,6 +52,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
     private int newTermId;
     private RecyclerView assignmentRecyclerView;
     public static int numAssessments;
+    private FloatingActionButton addAssessmentFloatingButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +92,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
         editInstructorName = findViewById(R.id.editInstructorName);
         editInstructorPhone = findViewById(R.id.editInstructorPhone);
         editInstructorEmail = findViewById(R.id.editInstructorEmail);
+        addAssessmentFloatingButton = findViewById(R.id.addAssessmentFloatingButton);
+        addAssessmentFloatingButton.setEnabled(false);
+
         if(passedCourseId != -1) {
             editCourseTitle.setText(courseTitle);
             editStartDate.setText(startDate);
@@ -98,6 +103,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
             editInstructorName.setText(instructorName);
             editInstructorPhone.setText(instructorPhone);
             editInstructorEmail.setText(instructorEmail);
+            addAssessmentFloatingButton.setEnabled(true);
         }
         assignmentRecyclerView = findViewById(R.id.assignmentsRecyclerView);
         final AssessmentAdapter assessmentAdapter= new AssessmentAdapter(this);
