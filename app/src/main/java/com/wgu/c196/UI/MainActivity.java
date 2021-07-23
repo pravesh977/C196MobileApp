@@ -13,6 +13,9 @@ import com.wgu.c196.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static int numAlert;
+    public static int numAlert2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

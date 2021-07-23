@@ -9,17 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.C196">
-        <activity android:name=".UI.AssessmentDetailsActivity"></activity>
+        <activity android:name=".UI.AssessmentDetailsActivity" />
+
         <activity android:name=".UI.TermDetailsActivity" />
-        <activity android:name=".UI.CourseDetailsActivity"
-                  android:label="Course Details"/>
+        <activity
+            android:name=".UI.CourseDetailsActivity"
+            android:label="Course Details" />
         <activity android:name=".UI.AssessmentsActivity" />
-        <activity android:name=".UI.CoursesActivity"
-                  android:label="Term Details and Courses"
-                  android:parentActivityName=".UI.TermsActivity"/>
-        <activity android:name=".UI.TermsActivity"
-                  android:label="Your Terms"
-                  android:parentActivityName=".UI.MainActivity"/>
+        <activity
+            android:name=".UI.CoursesActivity"
+            android:label="Term Details and Courses"
+            android:parentActivityName=".UI.TermsActivity" />
+        <activity
+            android:name=".UI.TermsActivity"
+            android:label="Your Terms"
+            android:parentActivityName=".UI.MainActivity" />
         <activity android:name=".UI.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +31,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver
+            android:name=".HelperClasses.MyReceiverStartCourse"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
+        <receiver
+            android:name=".HelperClasses.MyReceiverEndCourse"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -58,7 +58,7 @@ public class CoursesActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         Id = getIntent().getIntExtra("termId", -1);
-        Log.i("termIdincourse", String.valueOf(Id));
+        //Log.i("termIdincourse", String.valueOf(Id));
         repository = new DBRepository(getApplication());
         allTerms = repository.getAllTerms();
         for(TermEntity element:allTerms) {

@@ -26,13 +26,13 @@ public class StringToCalendarConverterClass {
             //Log.i("startnow", String.valueOf(editTermStart.getText()));
             Date theDate = sdf.parse(givenDate.getText().toString());
             cal.setTime(theDate);
-            mMonth = cal.get(Calendar.MONTH);
-            mDay = cal.get(Calendar.DAY_OF_MONTH);
-            mYear = cal.get(Calendar.YEAR);
-            Log.i("whoa", String.valueOf(theDate));
+            //mMonth = cal.get(Calendar.MONTH);
+            //mDay = cal.get(Calendar.DAY_OF_MONTH);
+            //mYear = cal.get(Calendar.YEAR);
+            //Log.i("whoa", String.valueOf(theDate));
             int selectedMonth = cal.get(Calendar.MONTH);
-            Log.i("selectedmonth", String.valueOf(theDate));
-            Log.i("thecalendar", String.valueOf(cal.get(Calendar.MONTH)));
+            //Log.i("selectedmonth", String.valueOf(theDate));
+            //Log.i("thecalendar", String.valueOf(cal.get(Calendar.MONTH)));
         } catch (ParseException e) {
             e.printStackTrace();
         }
