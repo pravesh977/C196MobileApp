@@ -55,8 +55,8 @@ public class CoursesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
         Id = getIntent().getIntExtra("termId", -1);
         //Log.i("termIdincourse", String.valueOf(Id));
         repository = new DBRepository(getApplication());
@@ -189,8 +189,7 @@ public class CoursesActivity extends AppCompatActivity {
             TermEntity newTerm = new TermEntity(Id, editTermTitle.getText().toString(), editTermStart.getText().toString(), editTermEnd.getText().toString());
             repository.update(newTerm);
         }
-        //Log.i("newtermid", String.valueOf(newTerm.getTermId()));
-
+        Toast.makeText(getApplicationContext(), "Term Saved.", Toast.LENGTH_LONG).show();
 
         Intent intent = new Intent(CoursesActivity.this, TermsActivity.class);
         startActivity(intent);

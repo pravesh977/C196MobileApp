@@ -9,21 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.C196">
-        <activity android:name=".UI.AssessmentDetailsActivity" />
+        <activity android:name=".UI.AssessmentDetailsActivity"
+                  android:label="Assessment Details"
+                  android:parentActivityName=".UI.CourseDetailsActivity"/>
 
         <activity android:name=".UI.TermDetailsActivity" />
         <activity
+            android:windowSoftInputMode="adjustPan|stateHidden"
             android:name=".UI.CourseDetailsActivity"
-            android:label="Course Details" />
+            android:label="Course Details and Assessments"
+            android:parentActivityName=".UI.CoursesActivity"
+            />
         <activity android:name=".UI.AssessmentsActivity" />
         <activity
             android:name=".UI.CoursesActivity"
             android:label="Term Details and Courses"
-            android:parentActivityName=".UI.TermsActivity" />
+            android:parentActivityName=".UI.TermsActivity"
+            />
         <activity
             android:name=".UI.TermsActivity"
             android:label="Your Terms"
-            android:parentActivityName=".UI.MainActivity" />
+            android:parentActivityName=".UI.MainActivity"
+            />
         <activity android:name=".UI.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,10 +39,14 @@
             </intent-filter>
         </activity>
         <receiver
-            android:name=".HelperClasses.MyReceiverStartCourse"
+            android:name=".HelperClasses.MyReceiverAssessment"
             android:enabled="true"
             android:exported="true"></receiver>
 
+        <receiver
+            android:name=".HelperClasses.MyReceiverStartCourse"
+            android:enabled="true"
+            android:exported="true" />
         <receiver
             android:name=".HelperClasses.MyReceiverEndCourse"
             android:enabled="true"

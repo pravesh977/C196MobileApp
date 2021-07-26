@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#F4F0F0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -158,33 +159,59 @@
             android:text="Save Course"
             android:onClick="saveCourse" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:textSize="20dp"
-            android:textStyle="italic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Assessments In This Term"
-            android:textAlignment="center"/>
+    </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/assignmentsRecyclerView"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="270dp"
-            android:background="#F4F0F0" />
-        </LinearLayout>
-
-        <LinearLayout
+    <TextView
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Assessments In This Course"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@id/courseDetails"
+        />
+
+    <LinearLayout
+        android:id="@+id/textView5"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Performance Assessment" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Objective Assessment"
+            android:textAlignment="textEnd"/>
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/assignmentsRecyclerView"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#F4F0F0"
+        app:layout_constraintTop_toBottomOf="@id/textView5"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#F8EE92"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
-            <TextView
+        <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -192,7 +219,7 @@
             android:text="Add Assessments"
             android:textSize="20sp" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addAssessmentFloatingButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -205,6 +232,6 @@
             app:srcCompat="@drawable/add"
             tools:layout_editor_absoluteX="349dp"
             tools:layout_editor_absoluteY="666dp" />
-        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -71,7 +71,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         if(mCourses != null) {
             CourseEntity current = mCourses.get(position);
             holder.courseItemView1.setText(current.getCourseTitle());
-            holder.courseItemView2.setText(current.getStartDate());
+            holder.courseItemView2.setText(current.getEndDate());
         }
             else {
             CourseEntity current = mCourses.get(position);

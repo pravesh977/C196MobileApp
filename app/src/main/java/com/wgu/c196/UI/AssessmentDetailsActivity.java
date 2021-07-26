@@ -2,7 +2,10 @@ package com.wgu.c196.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +19,8 @@ import android.widget.Toast;
 
 import com.wgu.c196.Database.DBRepository;
 import com.wgu.c196.Entity.AssessmentEntity;
+import com.wgu.c196.HelperClasses.MyReceiverAssessment;
+import com.wgu.c196.HelperClasses.MyReceiverStartCourse;
 import com.wgu.c196.HelperClasses.StringToCalendarConverterClass;
 import com.wgu.c196.R;
 
@@ -45,8 +50,8 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_details);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         courseId = getIntent().getIntExtra("courseId", -1);
         assessmentId = getIntent().getIntExtra("assessmentId", -1);
@@ -134,9 +139,28 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Assessment has been deleted!", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(AssessmentDetailsActivity.this, CoursesActivity.class);
                 startActivity(intent);
-            //} else {
-           //     Toast.makeText(getApplicationContext(), "Can't Delete Course. Please delete all its assignments first.", Toast.LENGTH_LONG).show();
-            //}
+        }
+        if(item.getItemId() == R.id.notifyAssessment) {
+            Intent intentPerformance = new Intent(AssessmentDetailsActivity.this, MyReceiverAssessment.class);
+            intentPerformance.putExtra("assessmentTitle", editPerformanceTitle.getText().toString());
+
+            //For performance assessment notification
+            Long triggerPerformance = StringToCalendarConverterClass.stringToCalendar(editPerformanceDate).getTimeInMillis();
+            PendingIntent senderPerformance = PendingIntent.getBroadcast(AssessmentDetailsActivity.this, ++MainActivity.numAlert, intentPerformance, 0);
+            AlarmManager alarmManagerPerformance = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+            alarmManagerPerformance.set(AlarmManager.RTC_WAKEUP, triggerPerformance, senderPerformance);
+
+            Intent intentObjective = new Intent(AssessmentDetailsActivity.this, MyReceiverAssessment.class);
+            intentObjective.putExtra("assessmentTitle", editObjectiveTitle.getText().toString());
+
+            //For objective assessment notification
+            Long triggerObjective = StringToCalendarConverterClass.stringToCalendar(editObjectiveDate).getTimeInMillis();
+            PendingIntent senderObjective = PendingIntent.getBroadcast(AssessmentDetailsActivity.this, ++MainActivity.numAlert, intentObjective, 0);
+            AlarmManager alarmManagerObjective = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+            alarmManagerObjective.set(AlarmManager.RTC_WAKEUP, triggerObjective, senderObjective);
+
+            Toast.makeText(getApplicationContext(), "Notification created for the Objective and Performance due dates!", Toast.LENGTH_LONG).show();
+
         }
         return true;
     }
@@ -155,5 +179,7 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
             AssessmentEntity newAssessment = new AssessmentEntity(assessmentId, editPerformanceTitle.getText().toString(), editPerformanceDate.getText().toString(), editObjectiveTitle.getText().toString(), editObjectiveDate.getText().toString(), courseId);
             repository.update(newAssessment);
         }
+        Toast.makeText(getApplicationContext(), "Assessment has been saved!", Toast.LENGTH_LONG).show();
+        this.finish();
     }
 }

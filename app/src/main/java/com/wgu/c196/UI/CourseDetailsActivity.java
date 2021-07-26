@@ -59,14 +59,17 @@ public class CourseDetailsActivity extends AppCompatActivity {
     public static int numAssessments;
     private FloatingActionButton addAssessmentFloatingButton;
     private Spinner statusSpinner;
+    private AssessmentAdapter assessmentAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_details);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         passedCourseId = getIntent().getIntExtra("courseId", -1);
         repository = new DBRepository(getApplication());
         allCourses = repository.getAllCourses();
@@ -129,7 +132,10 @@ public class CourseDetailsActivity extends AppCompatActivity {
             addAssessmentFloatingButton.setEnabled(true);
         }
         assignmentRecyclerView = findViewById(R.id.assignmentsRecyclerView);
-        final AssessmentAdapter assessmentAdapter= new AssessmentAdapter(this);
+
+//        final AssessmentAdapter assessmentAdapter= new AssessmentAdapter(this);
+        assessmentAdapter= new AssessmentAdapter(this);
+
         assignmentRecyclerView.setAdapter(assessmentAdapter);
         assignmentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<AssessmentEntity> filteredAssessments = new ArrayList<>();
@@ -233,7 +239,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
             alarmManagerEnd.set(AlarmManager.RTC_WAKEUP, triggerEnd, senderEnd);
 //            Log.i("triggerval", trigger.toString());
 //            Log.i("checkthiscalendar", checkthiscalendar.getTime().toString());
-            Toast.makeText(getApplicationContext(), "Notification created the start and end dates for this course!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Notification created for the start and end dates for this course!", Toast.LENGTH_LONG).show();
         }
         return true;
     }
@@ -261,8 +267,22 @@ public class CourseDetailsActivity extends AppCompatActivity {
             CourseEntity newCourse = new CourseEntity(passedCourseId, editCourseTitle.getText().toString(), editStartDate.getText().toString(), editEndDate.getText().toString(), statusSpinner.getSelectedItem().toString(), editInstructorName.getText().toString(), editInstructorPhone.getText().toString(), editInstructorEmail.getText().toString(), editCourseNotes.getText().toString(), termId);
             repository.update(newCourse);
         }
-        Intent intent = new Intent(CourseDetailsActivity.this, CoursesActivity.class);
-        startActivity(intent);
+        Toast.makeText(getApplicationContext(), "Course has been saved!", Toast.LENGTH_LONG).show();
+//        Intent intent = new Intent(CourseDetailsActivity.this, CoursesActivity.class);
+//        startActivity(intent);
+        this.finish();
+        //assessmentAdapter.notifyDataSetChanged();
+        // refresh the recycler view?
+        assignmentRecyclerView.setAdapter(assessmentAdapter);
+        assignmentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        List<AssessmentEntity> filteredAssessments = new ArrayList<>();
+        for(AssessmentEntity element:repository.getAllAssessments()) {
+            if(element.getCourseId() == passedCourseId) {
+                filteredAssessments.add(element);
+            }
+        }
+        numAssessments = filteredAssessments.size();
+        assessmentAdapter.setAssessments(filteredAssessments);
     }
 
     public void assessmentsAddScreen(View view) {

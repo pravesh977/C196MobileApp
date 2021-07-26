@@ -10,6 +10,7 @@
         android:id="@+id/courseDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#F4F0F0"
         android:orientation="vertical"
         android:textAlignment="center"
         app:layout_constraintRight_toRightOf="parent"
@@ -19,9 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-
-
             <TextView
                 android:id="@+id/textViewTerm"
                 android:layout_width="wrap_content"
@@ -40,8 +38,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,9 +54,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,7 +64,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -89,13 +81,12 @@
                 android:id="@+id/termIdTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textSize="20dp" />
         </LinearLayout>
 
 
     </LinearLayout>
-
     <Button
         android:id="@+id/savetermbutton"
         android:layout_width="wrap_content"
@@ -117,24 +108,16 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/savetermbutton"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/coursesRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:layout_marginTop="10dp"
-        android:background="#F4F0F0"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"/>
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#F8EE92"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coursesRecyclerView">
 
         <TextView
             android:id="@+id/textView2"
@@ -158,5 +141,37 @@
             tools:layout_editor_absoluteX="349dp"
             tools:layout_editor_absoluteY="666dp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/textView5"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Title" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="End Date"
+            android:textAlignment="textEnd"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/coursesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginTop="10dp"
+        android:background="#F4F0F0"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
