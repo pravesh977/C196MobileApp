@@ -2,7 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
+    <item android:title="Refresh"
+        app:showAsAction="never"
+        android:id="@+id/refreshAssessmentButton"
+        android:orderInCategory="100"/>
     <item android:title="Delete Course"
         app:showAsAction="never"
         android:id="@+id/deleteCourseButton"

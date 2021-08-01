@@ -8,6 +8,6 @@
         />
     <item android:title="Refresh Course"
         app:showAsAction="never"
-        android:id="@+id/refreshTerm"
+        android:id="@+id/refreshCourses"
         />
 </menu>

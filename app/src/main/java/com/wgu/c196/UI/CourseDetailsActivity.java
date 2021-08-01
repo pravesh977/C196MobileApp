@@ -59,8 +59,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
     public static int numAssessments;
     private FloatingActionButton addAssessmentFloatingButton;
     private Spinner statusSpinner;
+    private CourseAdapter courseAdapter;
     private AssessmentAdapter assessmentAdapter;
-
+    private int Id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,6 +200,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
     //Handling menu options
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.refreshAssessmentButton) {
+            refreshAssignments();
+        }
         if(item.getItemId() == R.id.courseSharingSMS) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
@@ -268,11 +272,17 @@ public class CourseDetailsActivity extends AppCompatActivity {
             repository.update(newCourse);
         }
         Toast.makeText(getApplicationContext(), "Course has been saved!", Toast.LENGTH_LONG).show();
-//        Intent intent = new Intent(CourseDetailsActivity.this, CoursesActivity.class);
-//        startActivity(intent);
+
         this.finish();
-        //assessmentAdapter.notifyDataSetChanged();
-        // refresh the recycler view?
+
+    }
+
+    public void refreshAssignments() {
+        assignmentRecyclerView = findViewById(R.id.assignmentsRecyclerView);
+
+//        final AssessmentAdapter assessmentAdapter= new AssessmentAdapter(this);
+        assessmentAdapter= new AssessmentAdapter(this);
+
         assignmentRecyclerView.setAdapter(assessmentAdapter);
         assignmentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<AssessmentEntity> filteredAssessments = new ArrayList<>();
@@ -283,6 +293,14 @@ public class CourseDetailsActivity extends AppCompatActivity {
         }
         numAssessments = filteredAssessments.size();
         assessmentAdapter.setAssessments(filteredAssessments);
+    }
+
+    @Override
+    protected void onResume()
+    {
+        // TODO Auto-generated method stub
+        super.onResume();
+        refreshAssignments();
     }
 
     public void assessmentsAddScreen(View view) {

@@ -168,6 +168,9 @@ public class CoursesActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Can't Delete Term. Please delete all its courses first.", Toast.LENGTH_LONG).show();
             }
         }
+        if(item.getItemId() == R.id.refreshCourses) {
+            refreshCourse();
+        }
         return true;
     }
 //    private void updateLabel() {
@@ -175,6 +178,30 @@ public class CoursesActivity extends AppCompatActivity {
 //        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 //        editTermStart.setText(sdf.format(myCalendar.getTime()));
 //    }
+
+    public void refreshCourse() {
+        recyclerView = findViewById(R.id.coursesRecyclerView);
+        final CourseAdapter adapter = new CourseAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        List<CourseEntity> filteredCourse = new ArrayList<>();
+        for(CourseEntity element:repository.getAllCourses()) {
+            if(element.getTermId() == Id) {
+                filteredCourse.add(element);
+            }
+        }
+        numCourses = filteredCourse.size();
+        adapter.setCourses(filteredCourse);
+    }
+
+    @Override
+    protected void onResume()
+    {
+        // TODO Auto-generated method stub
+        super.onResume();
+        refreshCourse();
+    }
+
 
     public void addTerm(View view) {
        // Log.i("titleadded", newTerm.getTermTitle());
