@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">C196</string>
+    <string name="app_name">Tracker WGU</string>
     <string name="deleteTerm">Delete Term</string>
     <string name="deleteCourse">Delete Course</string>
     <string name="deleteAssignment">Delete Assignment</string>

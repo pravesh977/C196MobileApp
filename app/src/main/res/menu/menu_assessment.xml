@@ -3,8 +3,6 @@
 
     <item android:title="Delete Assessment"
           android:id="@+id/deleteAssessmentButton"/>
-    <item android:title="Share"
-          android:id="@+id/shareAssessment"/>
     <item android:title="Notify"
           android:id="@+id/notifyAssessment" />
 </menu>
