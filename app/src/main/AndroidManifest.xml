@@ -11,20 +11,18 @@
         android:theme="@style/Theme.C196">
         <activity android:name=".UI.AssessmentDetailsActivity"
                   android:label="Assessment Details"
-                  android:parentActivityName=".UI.CourseDetailsActivity"/>
+            />
 
         <activity android:name=".UI.TermDetailsActivity" />
         <activity
             android:windowSoftInputMode="adjustPan|stateHidden"
             android:name=".UI.CourseDetailsActivity"
             android:label="Course Details and Assessments"
-            android:parentActivityName=".UI.CoursesActivity"
             />
         <activity android:name=".UI.AssessmentsActivity" />
         <activity
             android:name=".UI.CoursesActivity"
             android:label="Term Details and Courses"
-            android:parentActivityName=".UI.TermsActivity"
             />
         <activity
             android:name=".UI.TermsActivity"

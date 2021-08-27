@@ -1,5 +1,6 @@
 package com.wgu.c196.UI;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -70,6 +71,10 @@ public class CourseDetailsActivity extends AppCompatActivity {
 
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
         passedCourseId = getIntent().getIntExtra("courseId", -1);
         repository = new DBRepository(getApplication());
@@ -160,7 +165,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
         editEndDate.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Calendar endCourseCalendar = StringToCalendarConverterClass.stringToCalendar(editStartDate);
+                Calendar endCourseCalendar = StringToCalendarConverterClass.stringToCalendar(editEndDate);
                 openDatePickerDialogEndCourse(endCourseCalendar);
             }
         });
@@ -244,6 +249,9 @@ public class CourseDetailsActivity extends AppCompatActivity {
 //            Log.i("triggerval", trigger.toString());
 //            Log.i("checkthiscalendar", checkthiscalendar.getTime().toString());
             Toast.makeText(getApplicationContext(), "Notification created for the start and end dates for this course!", Toast.LENGTH_LONG).show();
+        }
+        if(item.getItemId() == android.R.id.home) {
+            this.finish();
         }
         return true;
     }

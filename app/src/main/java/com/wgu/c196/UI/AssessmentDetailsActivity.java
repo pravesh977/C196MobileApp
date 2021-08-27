@@ -1,5 +1,6 @@
 package com.wgu.c196.UI;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
@@ -52,6 +53,10 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
 
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
         courseId = getIntent().getIntExtra("courseId", -1);
         assessmentId = getIntent().getIntExtra("assessmentId", -1);
@@ -161,6 +166,9 @@ public class AssessmentDetailsActivity extends AppCompatActivity {
 
             Toast.makeText(getApplicationContext(), "Notification created for the Objective and Performance due dates!", Toast.LENGTH_LONG).show();
 
+        }
+        if(item.getItemId() == android.R.id.home) {
+            this.finish();
         }
         return true;
     }

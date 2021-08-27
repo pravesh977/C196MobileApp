@@ -1,5 +1,6 @@
 package com.wgu.c196.UI;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,6 +58,11 @@ public class CoursesActivity extends AppCompatActivity {
 
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
         Id = getIntent().getIntExtra("termId", -1);
         //Log.i("termIdincourse", String.valueOf(Id));
         repository = new DBRepository(getApplication());
@@ -171,6 +177,9 @@ public class CoursesActivity extends AppCompatActivity {
         if(item.getItemId() == R.id.refreshCourses) {
             refreshCourse();
         }
+        if(item.getItemId() == android.R.id.home) {
+            this.finish();
+        }
         return true;
     }
 //    private void updateLabel() {
@@ -221,6 +230,13 @@ public class CoursesActivity extends AppCompatActivity {
         Intent intent = new Intent(CoursesActivity.this, TermsActivity.class);
         startActivity(intent);
     }
+
+//    @Override
+//    public void onBackPressed()
+//    {
+//        Log.i("heybum", "overridden");
+//    }
+
 
     public void courseAddScreen(View view) {
         Intent intent = new Intent(CoursesActivity.this, CourseDetailsActivity.class);
