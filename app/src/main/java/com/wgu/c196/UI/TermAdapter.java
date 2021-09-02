@@ -35,8 +35,8 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
                     intent.putExtra("termStart", current.getTermStart());
                     intent.putExtra("termEnd", current.getTermEnd());
                     context.startActivity(intent);
-                    Log.i("termclicked", "term is being clicked");
-                    Log.i("thisterm",String.valueOf(current.getTermId()));
+//                    Log.i("termclicked", "term is being clicked");
+//                    Log.i("thisterm",String.valueOf(current.getTermId()));
                 }
             });
         }
